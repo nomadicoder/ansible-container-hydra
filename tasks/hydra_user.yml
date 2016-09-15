@@ -1,0 +1,3 @@
+# Add the hydra users
+- group: name=devs state=present
+- user: name={{ username }} comment='Hydra Server User' uid=1040 groups=devs,wheel

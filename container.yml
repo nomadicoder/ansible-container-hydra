@@ -1,0 +1,15 @@
+version: "1"
+services:
+  tulhydra:
+    image: centos:7
+    ports:
+      - "8983:8983"
+      - "3000:3000"
+    command: ['/bin/bash', '-D']
+    dev_overrides:
+      environment:
+        - "DEBUG=1"
+      volumes:
+        - "$PWD:/app"
+  #
+registries: {}

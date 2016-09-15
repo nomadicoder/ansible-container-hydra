@@ -1,0 +1,8 @@
+# Install rbenv-sudo and default ruby
+- name: create dev directory
+  file:
+    path: /app
+    state: directory
+    mode: 0755
+    owner: '{{ hydrauser }}'
+    group: '{{ hydrauser }}'

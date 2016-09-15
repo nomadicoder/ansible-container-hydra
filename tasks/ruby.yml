@@ -1,0 +1,26 @@
+# Install rbenv-sudo and default ruby
+- name: install rbenv
+  git: repo=https://github.com/rbenv/rbenv.git dest=/home/{{ username }}/.rbenv
+  become_user: "{{ username }}"
+- lineinfile: dest=/home/{{ username }}/.bash_profile line='export PATH="$HOME/.rbenv/bin:$PATH"'
+  become_user: "{{ username }}"
+- lineinfile: dest=/home/{{ username }}/.bash_profile line='eval "$(rbenv init -)"'
+  become_user: "{{ username }}"
+- name: install ruby-build
+  git: repo=https://github.com/rbenv/ruby-build.git dest=/home/{{ username }}/.rbenv/plugins/ruby-build
+  become_user: "{{ username }}"
+#- name: install rbenv-sudo
+#  git: repo=https://github.com/dcarley/rbenv-sudo.git dest=/home/{{ username }}/.rbenv/plugins/rbenv-sudo
+#  become_user: "{{ username }}"
+- name: check ruby {{ version }} installed
+  shell: /home/{{ username }}/.rbenv/bin/rbenv versions | grep {{ version }}
+  register: ruby_installed
+  ignore_errors: yes
+  become_user: "{{ username }}"
+- name: install ruby {{ version }}
+  command: /home/{{ username }}/.rbenv/bin/rbenv install {{ version }}
+  when: ruby_installed|failed
+  become_user: "{{ username }}"
+- name: set default ruby
+  command: /home/{{ username }}/.rbenv/bin/rbenv global {{ version }}
+  become_user: "{{ username }}"
