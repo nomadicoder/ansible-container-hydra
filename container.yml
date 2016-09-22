@@ -9,7 +9,7 @@ services:
     dev_overrides:
       environment:
         - "DEBUG=1"
-      command: ['/bin/bash', '/app/sleep-loop.sh']
+      command: ['/bin/bash', '/app/ansible/sleep-loop.sh']
       volumes:
         - "$PWD:/app"
   #
