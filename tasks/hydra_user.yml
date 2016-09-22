@@ -1,3 +1,8 @@
 # Add the hydra users
 - group: name=devs state=present
-- user: name={{ username }} comment='Hydra Server User' uid=1040 groups=devs,wheel
+- user: name={{ hydra_user }} comment='Hydra Server User' uid=1040 groups=devs,wheel
+- name: Create quoted user file
+  file:
+    path: /home/{{ hydra_user }}/foo.conf
+    state: touch
+  become_user: "{{ hydra_user }}"

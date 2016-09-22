@@ -5,10 +5,11 @@ services:
     ports:
       - "8983:8983"
       - "3000:3000"
-    command: ['/bin/bash', '-D']
+    command: ["/usr/bin/dumb-init", "/bin/bash"]
     dev_overrides:
       environment:
         - "DEBUG=1"
+      command: ['/bin/bash', '/app/sleep-loop.sh']
       volumes:
         - "$PWD:/app"
   #

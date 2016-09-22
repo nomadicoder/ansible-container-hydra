@@ -4,5 +4,5 @@
     path: /app
     state: directory
     mode: 0755
-    owner: '{{ hydrauser }}'
-    group: '{{ hydrauser }}'
+    owner: '{{ hydra_user }}'
+    group: '{{ hydra_user }}'
