@@ -4,6 +4,10 @@ Deploy Hydra to Docker with [Ansible Container](https://github.com/ansible/ansib
 
 *Status:* Exploratory development.
 
+*Work in Progress Note:* This container clones the Hydra application into the container's /app directory and
+installs the Ruby gems. To support development, it then mounts the working directory in
+place of the container's /app directory.
+
 Currently provisions a Docker container to install Hydra on a mountable volume.
 
     git clone https://github.com/skng5/ansible-container-hydra.git

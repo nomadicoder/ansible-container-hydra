@@ -1,0 +1,7 @@
+---
+# Install hydra gems
+#
+- name: Install Hydra Gems
+  command: "/home/{{ hydra_user }}/.rbenv/shims/bundle install"
+  args:
+    chdir: /app

@@ -1,0 +1,13 @@
+---
+# Install rbenv-sudo and default ruby
+- name: Clone Hydra App
+  git:
+    repo: https://github.com/tulibraries/dplah.git
+    dest: /app
+    version: develop
+- name: Set owner to TULHydra
+  file:
+    path: /app
+    owner: "{{ hydra_user }}"
+    group: "{{ hydra_user }}"
+    state: directory
