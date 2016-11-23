@@ -3,27 +3,29 @@
 - name: install rbenv
   git:
     repo: https://github.com/rbenv/rbenv.git
-    dest: "/home/{{ hydra_user }}/.rbenv"
+    dest: "/home/{{ app_user }}/.rbenv"
 - name: Put rbenv in execution path
   lineinfile:
-    dest: "/home/{{ hydra_user }}/.bash_profile"
+    dest: "/home/{{ app_user }}/.bash_profile"
     line: 'export PATH="$HOME/.rbenv/bin:$PATH"'
 - name: Initialize rbenv on login
   lineinfile:
-    dest: "/home/{{ hydra_user }}/.bash_profile"
+    dest: "/home/{{ app_user }}/.bash_profile"
     line: 'eval "$(rbenv init -)"'
 - name: install ruby-build
   git:
     repo: https://github.com/rbenv/ruby-build.git
-    dest: "/home/{{ hydra_user }}/.rbenv/plugins/ruby-build"
+    dest: "/home/{{ app_user }}/.rbenv/plugins/ruby-build"
 - name: "check ruby {{ ruby_version }} installed"
-  shell: "/home/{{ hydra_user }}/.rbenv/bin/rbenv versions | grep {{ ruby_version }}"
+  shell: "/home/{{ app_user }}/.rbenv/bin/rbenv versions | grep {{ ruby_version }}"
   register: ruby_installed
   ignore_errors: yes
 - name: "install ruby {{ ruby_version }}"
-  command: "/home/{{ hydra_user }}/.rbenv/bin/rbenv install {{ ruby_version }}"
+  command: "/home/{{ app_user }}/.rbenv/bin/rbenv install {{ ruby_version }}"
   when: ruby_installed|failed
 - name: set default ruby
-  command: "/home/{{ hydra_user }}/.rbenv/bin/rbenv global {{ ruby_version }}"
+  command: "/home/{{ app_user }}/.rbenv/bin/rbenv global {{ ruby_version }}"
 - name: install bundler
-  command: "/home/{{ hydra_user }}/.rbenv/shims/gem install bundler --no-ri --no-rdoc"
+  command: "/home/{{ app_user }}/.rbenv/shims/gem install bundler --no-ri"
+- name: install rails
+  command: "/home/{{ app_user }}/.rbenv/shims/gem install rails -v {{ rails_version }} --no-ri"
