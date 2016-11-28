@@ -1,0 +1,12 @@
+---
+# FITS
+- name: Install FITS
+  unarchive:
+    src: downloads/fits-0.8.5.zip
+    dest: /usr/local/share
+    remote_src: yes
+- name: Make FITS executable
+  file:
+    path: /usr/local/share/fits.sh
+    state: touch
+    mode: "a+x"

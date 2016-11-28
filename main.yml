@@ -17,6 +17,10 @@
     - include: tasks/hydra_user.yml
     - include: tasks/ruby.yml
       remote_user: "{{ app_user }}"
+    - include: tasks/fits.yml
+    - include: tasks/redis.yml
+    - include: tasks/resque.yml
+#      remote_user: "{{ app_user }}"
 #    - include: tasks/hydra_app.yml
 #    - include: tasks/hydra_install.yml
 #      remote_user: "{{ app_user }}"

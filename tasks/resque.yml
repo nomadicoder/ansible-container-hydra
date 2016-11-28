@@ -1,0 +1,4 @@
+---
+# Install and configrue Resque
+- name: install Resque 
+  command: "/home/{{ app_user }}/.rbenv/shims/gem install resque --no-ri"
