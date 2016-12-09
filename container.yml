@@ -6,11 +6,13 @@ services:
       - "8983:8983"
       - "3000:3000"
     command: ["/usr/bin/dumb-init", "/bin/bash"]
+    working_dir: "/var/www/hydra_app"
     dev_overrides:
       environment:
         - "DEBUG=1"
       command: ['/bin/bash', '/app/ansible/sleep-loop.sh']
       volumes:
+        - "$PWD:/var/www/hydra_app"
         - "$PWD:/app"
   #
 registries: {}

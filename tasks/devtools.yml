@@ -9,6 +9,7 @@
     - git-core
     - zip
     - curl
+    - wget
     - readline-devel
     - python
     - libselinux-python

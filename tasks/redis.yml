@@ -1,0 +1,8 @@
+---
+# Install and configure Redis
+- name: install epel
+  command: wget -r --no-parent -A 'epel-release-*.rpm' http://dl.fedoraproject.org/pub/epel/7/x86_64/e/
+- name: add redis repository
+  command: rpm -Uvh dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-*.rpm
+- name: install redis
+  yum: name="redis" state=present

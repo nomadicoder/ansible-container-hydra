@@ -24,15 +24,15 @@ And run the container:
 
 Since this is an exploratory container, you can shell in from a separate termial session:
 
-    docker exec -it ansible_tulhydra_1 bash
+    docker exec -it ansible_hydra_app_1 bash
 
 Switch to the hydra user:
 
-    su - tulhydra
+    su - hydra_app
 
 Prep your application:
 
-    cd /app
+    cd /var/www/hydra_app
     bundle install
     rake db:migrate
     rake jetty:start
