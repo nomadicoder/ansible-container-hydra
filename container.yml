@@ -1,6 +1,6 @@
 version: "1"
 services:
-  tulhydra:
+  dplah:
     image: centos:7
     ports:
       - "8983:8983"
